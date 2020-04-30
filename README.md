@@ -24,7 +24,9 @@ First off, we're going to make sure ES is installed and available for our python
 
 We can use a docker image of ElasticSearch instead of manual installation, because it's easy.
 
-```docker run -itd --name elasticsearch -p 9200:9200 elasticsearch:6.5.0
+```
+docker run -itd --name elasticsearch -p 9200:9200 elasticsearch:6.5.0
+
 #set enough vm memory to avoid es running out of memory
 
 sudo sysctl -w vm.max_map_count=244655
@@ -51,7 +53,8 @@ I've written some print statements to verify it's running properly.
 Now, goto grafana, http://localhost:3000
 login with username: admin, password: admin, configure the datasource, create graphs and charts based on your requirement.
 
-### Ta Da! you have yourself a real-time analytics engine. (too silly to call this an analytics engine :P )
+### Ta Da! you have yourself a real-time analytics engine. 
+(too silly to call this an analytics engine :P )
 
 
 
@@ -61,10 +64,8 @@ login with username: admin, password: admin, configure the datasource, create gr
 import tailer
 from datetime import datetime
 import json
-#dt=datetime.strptime(da, '%d/%b/%Y:%H:%M:%S +%f')
-#print("%sT%s+00:00"%(dt.date(),dt.time()))
-
 from elasticsearch import Elasticsearch
+
 es = Elasticsearch('http://localhost:9200')
 
 for line in tailer.follow(open('test-log.log')):
